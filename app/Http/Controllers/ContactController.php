@@ -38,7 +38,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $this->contactRepository->store($data);
+        $data = $this->contactRepository->store($data);
         return $data;
     }
 
@@ -70,7 +70,8 @@ class ContactController extends Controller
         $data = $request->all();
         $contact->fill($data);
         $contact->save();
-
+        $service = app(\App\Services\ContactService::class);
+        $service->update($contact, $request);
         return $data;
     }
 
