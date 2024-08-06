@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ContactFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,24 +17,29 @@ class Contact extends Model
     /**
      * Get the adress
      */
-    public function address(): HasMany
+    public function addresses()
     {
-        return $this->hasMany(Address::class);
+        return $this->hasMany(Address::class, 'contact_id');
     }
 
     /**
      * Get the email
      */
-    public function email(): HasMany
+    public function emails()
     {
-        return $this->hasMany(Email::class);
+        return $this->hasMany(Email::class, 'contact_id');
     }
 
     /**
      * Get the email
      */
-    public function phone(): HasMany
+    public function phones()
     {
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(Phone::class, 'contact_id');
+    }
+
+    protected static function newFactory()
+    {
+        return ContactFactory::new();
     }
 }
