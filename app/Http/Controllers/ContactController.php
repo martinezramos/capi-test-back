@@ -19,7 +19,8 @@ class ContactController extends Controller
     //
     public function index()
     {
-        $data = $this->contactRepository->index();
+        $data = Contact::paginate(10);
+        // $data = Contact();
         return $data;
     }
 

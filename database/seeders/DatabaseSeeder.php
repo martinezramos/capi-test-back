@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Contact::factory()->count(5000)->create()->each(function ($contact){
+        Contact::factory()->count(100)->create()->each(function ($contact){
             Phone::factory()->count(1)->create([
                 'contact_id' => $contact?->id,
             ]);
